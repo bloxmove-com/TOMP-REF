@@ -92,7 +92,7 @@ public abstract class BasePlanningProvider implements PlanningProvider {
 		leg.setDepartureTime(getStartTime());
 		leg.setArrivalTime(getEndTime());
 		leg.setAsset(asset);
-		leg.setPricing(getFare());
+		//leg.setPricing(getFare());
 
 		if (provideIds) {
 			String uuid = UUID.randomUUID().toString();
@@ -101,13 +101,13 @@ public abstract class BasePlanningProvider implements PlanningProvider {
 			booking.setId(uuid);
 		}
 		booking.setLegs(Arrays.asList(leg));
-		booking.setFrom(body.getFrom());
+		//booking.setFrom(body.getFrom());
 		booking.setTo(body.getTo());
 
 //		booking.setDepartureTime(leg.getDepartureTime());
 //		booking.setArrivalTime(leg.getArrivalTime());
 //		booking.setNrOfTravelers(body.getNrOfTravelers());
-		booking.setPricing(leg.getPricing());
+		// booking.setPricing(leg.getPricing());
 //		booking.setRadius(body.getRadius());
 		return Arrays.asList(booking);
 	}
