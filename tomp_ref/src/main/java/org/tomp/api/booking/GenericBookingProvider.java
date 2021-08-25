@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import io.swagger.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,6 @@ import org.tomp.api.utils.ClientUtil;
 import org.tomp.api.utils.GeoCoderUtil;
 
 import io.swagger.client.ApiException;
-import io.swagger.model.Address;
-import io.swagger.model.Booking;
-import io.swagger.model.BookingOperation;
-import io.swagger.model.BookingRequest;
-import io.swagger.model.BookingState;
-import io.swagger.model.Coordinates;
-import io.swagger.model.Place;
 
 @Component
 @ConditionalOnProperty(value = "tomp.providers.booking", havingValue = "generic", matchIfMissing = true)
@@ -54,6 +48,8 @@ public class GenericBookingProvider implements BookingProvider {
 
 		Booking booking = repository.getSavedOption(id);
 		booking.setState(BookingState.PENDING);
+
+
 
 		if (geocoderUtil.isActive()) {
 			@NotNull
@@ -106,15 +102,19 @@ public class GenericBookingProvider implements BookingProvider {
 		switch (body.getOperation()) {
 		case COMMIT:
 			booking.setState(BookingState.CONFIRMED);
+			booking.getLegs().get(0).setState(LegState.NOT_STARTED);
 			break;
 		case CANCEL:
 			booking.setState(BookingState.CANCELLED);
+			booking.getLegs().get(0).setState(LegState.CANCELLED);
 			break;
 		case DENY:
 			booking.setState(BookingState.RELEASED);
+			booking.getLegs().get(0).setState(LegState.CANCELLED);
 			break;
 		case EXPIRE:
 			booking.setState(BookingState.EXPIRED);
+			booking.getLegs().get(0).setState(LegState.CANCELLED);
 			break;
 		}
 

@@ -85,7 +85,7 @@ public class GenericTripExecutionProvider implements TripExecutionProvider {
 		if (execution.getAsset() == null && body.getAsset() != null) {
 			execution.setAsset(body.getAsset());
 		}
-		execution.setFrom(body.getAsset().getOverriddenProperties().getLocation());
+		//execution.setFrom(body.getAsset().getOverriddenProperties().getLocation());
 		execution.setDepartureTime(body.getTime());
 		repository.saveLegEvent(id, body);
 		execution.setState(LegState.IN_USE);
