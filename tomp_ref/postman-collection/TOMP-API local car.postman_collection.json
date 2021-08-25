@@ -1,0 +1,436 @@
+{
+	"info": {
+		"_postman_id": "cf273364-fa2c-4580-b7fd-1d886b63b297",
+		"name": "TOMP-API local car",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get available assets from operator",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8083/operator/available-assets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"operator",
+						"available-assets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Plan a booking with intent",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"  pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Booking state is NEW\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.options[0].state).to.eql(\"NEW\");",
+							"});",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.globals.set(\"lastState\", jsonData[\"options\"][0][\"state\"]);",
+							"pm.globals.set(\"id\", jsonData[\"options\"][0][\"id\"]);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"from\":{\n      \"coordinates\":{\n         \"lng\":6.657715,\n         \"lat\":52.627297\n      }\n   },\n   \"nrOfTravelers\": 1,\n   \"useAssets\":[\n      \"<VIN_Of_Asset>\"\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/plannings/?booking-intent=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"plannings",
+						""
+					],
+					"query": [
+						{
+							"key": "booking-intent",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a booking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Booking state is PENDING\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.state).to.eql(\"PENDING\");",
+							"});",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.globals.set(\"lastState\", jsonData.state);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"{{id}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/bookings/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"bookings",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm a booking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Booking state is CONFIRMED\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.state).to.eql(\"CONFIRMED\");",
+							"});",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.globals.set(\"lastState\", jsonData.state);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"operation\": \"COMMIT\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/bookings/{{id}}/events/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"bookings",
+						"{{id}}",
+						"events",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deny a booking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Booking state is RELEASED\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.state).to.eql(\"RELEASED\");",
+							"});",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.globals.set(\"lastState\", jsonData.state);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"operation\": \"DENY\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/bookings/{{id}}/events/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"bookings",
+						"{{id}}",
+						"events",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a booking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Booking state is correct\", () => {",
+							"    const responseJson = pm.response.json();",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    const lastState = pm.globals.get(\"lastState\");",
+							"    pm.expect(responseJson.state).to.eql(lastState)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/bookings/{{id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"bookings",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excecution start",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Booking state is correct\", () => {",
+							"    const responseJson = pm.response.json();",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    const lastState = pm.globals.get(\"lastState\");",
+							"    pm.expect(responseJson.state).to.eql(lastState)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"time\": \"{{dt}}\",\n  \"event\": \"SET_IN_USE\",\n  \"asset\": {\n    \"overriddenProperties\" : {\n      \"location\": {\n        \"coordinates\": {\n          \"lng\": 6.269639,\n          \"lat\": 52.253379\n        }\n      }\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/legs/{{id}}/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"legs",
+						"{{id}}",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excecution pause",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Booking state is correct\", () => {",
+							"    const responseJson = pm.response.json();",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    const lastState = pm.globals.get(\"lastState\");",
+							"    pm.expect(responseJson.state).to.eql(lastState)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"time\": \"{{dt2}}\",\n  \"event\": \"PAUSE\",\n  \"asset\": {\n    \"overriddenProperties\" : {\n      \"energyLabel\": \"A\",\n      \"location\": {\n        \"coordinates\": {\n          \"lng\": 6.269639,\n          \"lat\": 52.253379\n        }\n      }\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/legs/{{id}}/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"legs",
+						"{{id}}",
+						"events"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.headers.add({",
+					"    key: 'Accept-Language',",
+					"    value: 'nl'",
+					"});",
+					"pm.request.headers.add({",
+					"    key: 'Api',",
+					"    value: 'TOMP'",
+					"});",
+					"pm.request.headers.add({",
+					"    key: 'Api-Version',",
+					"    value: '1.0.0'",
+					"});",
+					"pm.request.headers.add({",
+					"    key: 'maas-id',",
+					"    value: 'd52bfad0-ee4b-4f72-9f38-efce115ffb49'",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
