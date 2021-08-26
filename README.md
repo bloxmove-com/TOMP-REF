@@ -11,7 +11,7 @@ $ mvn package
 2. Start application using car profile (port: 8083)
 
 ```console
-$ java -jar -Dspring.profiles.active=car ./target/reference-1.2.0-exec.jar
+$ java -jar -Dspring.profiles.active=car ./target/reference-1.2.2-exec.jar
 ```
 3. Use postman-collection to make requests
 

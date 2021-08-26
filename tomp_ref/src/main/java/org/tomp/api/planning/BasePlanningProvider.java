@@ -1,5 +1,6 @@
 package org.tomp.api.planning;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import javax.validation.Valid;
@@ -67,6 +68,7 @@ public abstract class BasePlanningProvider implements PlanningProvider {
 		Asset asset = new Asset();
 		asset.setId(assetId);
 
+
 		Leg leg = new Leg();
 		leg.setAssetType(getAssetType());
 		leg.setFrom(body.getFrom());
@@ -92,6 +94,21 @@ public abstract class BasePlanningProvider implements PlanningProvider {
 		leg.setDepartureTime(getStartTime());
 		leg.setArrivalTime(getEndTime());
 		leg.setAsset(asset);
+
+
+		Fare fare = new Fare();
+
+		FarePart farePart = new FarePart();
+		farePart.setAmount(new BigDecimal(0.5));
+		farePart.setCurrencyCode("EUR");
+		farePart.setVatRate(new BigDecimal(21));
+		farePart.setType(FarePart.TypeEnum.FLEX);
+		farePart.setUnitType(FarePart.UnitTypeEnum.MINUTE);
+
+		fare.setParts(Arrays.asList(farePart));
+
+
+		leg.setPricing(fare);
 		//leg.setPricing(getFare());
 
 		if (provideIds) {

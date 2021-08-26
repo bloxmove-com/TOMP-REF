@@ -70,9 +70,9 @@ public class OperatorInformationController extends OperatorApiController {
 		HeaderValidator.validateHeader(request);
 		try {
 			List<AssetType> list = provider.getAvailableAssetTypes(acceptLanguage);
-			HttpHeaders headers = routerUtil.createHeadersToMP("GET", "/operator/available-assets", null,
-					request.getHeader("MPID"));
-			return new ResponseEntity<>(list, headers, HttpStatus.OK);
+			//HttpHeaders headers = routerUtil.createHeadersToMP("GET", "/operator/available-assets", null,
+			//		request.getHeader("MPID"));
+			return new ResponseEntity<>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			log.error("operatorAvailableAssetsGet", e);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -88,9 +88,9 @@ public class OperatorInformationController extends OperatorApiController {
 			@Parameter(in = ParameterIn.HEADER, description = "The ID of the maas operator that has to receive this message", schema = @Schema()) @RequestHeader(value = "addressed-to", required = false) String addressedTo) {
 		HeaderValidator.validateHeader(request);
 		try {
-			HttpHeaders headers = routerUtil.createHeadersToMP("GET", "/operator/information", null,
-					request.getHeader("MPID"));
-			return new ResponseEntity<>(provider.getOperatorInformation(acceptLanguage), headers, HttpStatus.OK);
+			//HttpHeaders headers = routerUtil.createHeadersToMP("GET", "/operator/information", null,
+				//	request.getHeader("MPID"));
+			return new ResponseEntity<>(provider.getOperatorInformation(acceptLanguage), HttpStatus.OK);
 		} catch (Exception e) {
 			log.error("operatorInformationGet", e);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -53,6 +53,7 @@ public class CarOperatorInformationProvider implements OperatorInformationProvid
 		info.setEmail("email@caroperator.org");
 		info.setLanguage(Arrays.asList(acceptLanguage));
 		info.setName("Car Operator");
+		info.setConditions("Terms and conditions of car transport operator...");
 		return info;
 	}
 
