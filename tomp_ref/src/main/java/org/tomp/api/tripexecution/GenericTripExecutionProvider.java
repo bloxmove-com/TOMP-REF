@@ -111,11 +111,11 @@ public class GenericTripExecutionProvider implements TripExecutionProvider {
 	public Leg finish(LegEvent body, String acceptLanguage, String id, String maasId) {
 		Leg leg = repository.getLeg(id);
 		leg.setState(LegState.FINISHED);
-		leg.setTo(body.getAsset().getOverriddenProperties().getLocation());
+		//leg.setTo(body.getAsset().getOverriddenProperties().getLocation());
 		leg.setArrivalTime(body.getTime());
 		leg.setPricing(leg.getPricing());
 		leg.getPricing().setEstimated(false);
-		finaliseJournalItem(id, leg, body, maasId);
+//		finaliseJournalItem(id, leg, body, maasId);
 		repository.saveLegEvent(id, body);
 		return leg;
 	}
