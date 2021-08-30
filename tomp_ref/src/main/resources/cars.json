@@ -6,33 +6,57 @@
             {
                 "id":"TO_VIN_01",
                 "overriddenProperties":{
+                    "brand": "Audi",
+                    "model": "R8",
+                    "fuel": "GASOLINE",
+                    "gearbox": "AUTOMATIC",
                     "location":{
                         "coordinates":{
-                            "lng":3.32131,
-                            "lat":4.4443
+                            "lng":9.993682,
+                            "lat":53.551086
                         }
+                    },
+                    "meta": {
+                        "pricingPlanId": "pricing_plan_min",
+                        "requiredUserClaims": ["minAge18", "driverLicense"]
                     }
                 }
             },
             {
                 "id":"TO_VIN_02",
                 "overriddenProperties":{
+                    "brand": "Audi",
+                    "model": "A5",
+                    "fuel": "GASOLINE",
+                    "gearbox": "AUTOMATIC",
                     "location":{
                         "coordinates":{
-                            "lng":6.32131,
-                            "lat":7.4443
+                            "lng":9.592168,
+                            "lat":53.34917
                         }
+                    },
+                    "meta": {
+                        "pricingPlanId": "pricing_plan_min",
+                        "requiredUserClaims": ["minAge18", "driverLicense"]
                     }
                 }
             },
             {
                 "id":"TO_VIN_03",
                 "overriddenProperties":{
+                    "brand": "Audi",
+                    "model": "A6",
+                    "fuel": "GASOLINE",
+                    "gearbox": "AUTOMATIC",
                     "location":{
                         "coordinates":{
-                            "lng":8.32131,
-                            "lat":7.4443
+                            "lng":9.58345328,
+                            "lat":53.34108349
                         }
+                    },
+                    "meta": {
+                        "pricingPlanId": "pricing_plan_min",
+                        "requiredUserClaims": ["minAge18", "driverLicense"]
                     }
                 }
             }

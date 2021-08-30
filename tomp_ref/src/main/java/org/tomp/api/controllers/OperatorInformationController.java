@@ -154,9 +154,9 @@ public class OperatorInformationController extends OperatorApiController {
 			@Parameter(in = ParameterIn.QUERY, description = "optional id of the station to use in the filter (/operator/stations)", schema = @Schema()) @Valid @RequestParam(value = "stationId", required = false) String stationId) {
 		HeaderValidator.validateHeader(request);
 		try {
-			HttpHeaders headers = routerUtil.createHeadersToMP("GET", "/operator/pricing-plans", null,
-					request.getHeader("MPID"));
-			return new ResponseEntity<>(provider.getPricingPlans(acceptLanguage), headers, HttpStatus.OK);
+			// HttpHeaders headers = routerUtil.createHeadersToMP("GET", "/operator/pricing-plans", null,
+				//	request.getHeader("MPID"));
+			return new ResponseEntity<>(provider.getPricingPlans(acceptLanguage), HttpStatus.OK);
 		} catch (Exception e) {
 			log.error("operatorRegionsGet", e);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

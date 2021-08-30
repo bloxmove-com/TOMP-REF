@@ -76,41 +76,35 @@ public class CarOperatorInformationProvider implements OperatorInformationProvid
 
 	@Override
 	public List<SystemPricingPlan> getPricingPlans(String acceptLanguage) {
-		SystemPricingPlan membersOnly = new SystemPricingPlan();
-		membersOnly.setPlanId("MO");
-		membersOnly.setDescription("Subscribed members can apply for this pricing plan");
-		membersOnly.setIsTaxable(true);
-		membersOnly.setName("Members only");
+		SystemPricingPlan carPricingPlanKm = new SystemPricingPlan();
+		carPricingPlanKm.setPlanId("pricing_plan_km");
+		carPricingPlanKm.setDescription("Pricing plan for kilometers");
+		carPricingPlanKm.setIsTaxable(true);
+		carPricingPlanKm.setName("Pricing Plan KM");
 		Fare fare = new Fare();
 		FarePart partsItem = new FarePart();
-		partsItem.setAmount(BigDecimal.valueOf(1.25));
-		partsItem.setCurrencyCode("NL");
+		partsItem.setAmount(BigDecimal.valueOf(0.70));
+		partsItem.setCurrencyCode("EUR");
 		partsItem.setUnitType(UnitTypeEnum.KM);
 		partsItem.setType(TypeEnum.FLEX);
 		fare.addPartsItem(partsItem);
-		membersOnly.setFare(fare);
+		carPricingPlanKm.setFare(fare);
 
-		SystemPricingPlan nonMembers = new SystemPricingPlan();
-		nonMembers.setPlanId("NM");
-		nonMembers.setDescription("Pricing plan for non-subscribers");
-		nonMembers.setIsTaxable(true);
-		nonMembers.setName("Non members");
-		fare = new Fare();
-		partsItem = new FarePart();
-		partsItem.setAmount(BigDecimal.valueOf(1.55));
-		partsItem.setCurrencyCode("NL");
-		partsItem.setUnitType(UnitTypeEnum.KM);
-		partsItem.setType(TypeEnum.FLEX);
-		fare.addPartsItem(partsItem);
+		SystemPricingPlan carPricingPlanMin = new SystemPricingPlan();
+		carPricingPlanMin.setPlanId("pricing_plan_min");
+		carPricingPlanMin.setDescription("Pricing plan for minutes");
+		carPricingPlanMin.setIsTaxable(true);
+		carPricingPlanMin.setName("Pricing Plan Min");
+		Fare fare2 = new Fare();
+		FarePart partsItem2 = new FarePart();
+		partsItem2.setAmount(BigDecimal.valueOf(0.50));
+		partsItem2.setCurrencyCode("EUR");
+		partsItem2.setUnitType(UnitTypeEnum.MINUTE);
+		partsItem2.setType(TypeEnum.FLEX);
+		fare2.addPartsItem(partsItem2);
+		carPricingPlanMin.setFare(fare2);
 
-		partsItem = new FarePart();
-		partsItem.setAmount(BigDecimal.valueOf(10));
-		partsItem.setCurrencyCode("NL");
-		partsItem.setType(TypeEnum.FIXED);
-		fare.addPartsItem(partsItem);
-		nonMembers.setFare(fare);
-
-		return Arrays.asList(membersOnly, nonMembers);
+		return Arrays.asList(carPricingPlanKm,carPricingPlanMin);
 	}
 
 	@Override
