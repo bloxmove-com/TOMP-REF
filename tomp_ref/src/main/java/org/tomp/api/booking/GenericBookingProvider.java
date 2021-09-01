@@ -118,6 +118,7 @@ public class GenericBookingProvider implements BookingProvider {
 			break;
 		}
 
+
 		informListeners(body, id);
 		repository.saveBooking(booking);
 		return booking;

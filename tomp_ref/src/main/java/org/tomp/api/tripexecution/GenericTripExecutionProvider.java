@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
+import io.swagger.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
@@ -11,19 +12,6 @@ import org.threeten.bp.OffsetDateTime;
 import org.threeten.bp.temporal.ChronoUnit;
 import org.tomp.api.configuration.ExternalConfiguration;
 import org.tomp.api.repository.DefaultRepository;
-
-import io.swagger.model.Asset;
-import io.swagger.model.Coordinates;
-import io.swagger.model.Fare;
-import io.swagger.model.FarePart;
-import io.swagger.model.JournalEntry;
-import io.swagger.model.JournalState;
-import io.swagger.model.Leg;
-import io.swagger.model.LegEvent;
-import io.swagger.model.LegState;
-import io.swagger.model.Suboperator;
-import io.swagger.model.Token;
-import io.swagger.model.TokenDefault;
 
 @Component
 @ConditionalOnProperty(value = "tomp.providers.tripexecution", havingValue = "generic", matchIfMissing = true)
@@ -109,7 +97,13 @@ public class GenericTripExecutionProvider implements TripExecutionProvider {
 
 	@Override
 	public Leg finish(LegEvent body, String acceptLanguage, String id, String maasId) {
+
+		Booking booking = repository.getBooking(id);
+		booking.setState(BookingState.FINISHED);
+		repository.saveBooking(booking);
+
 		Leg leg = repository.getLeg(id);
+
 		leg.setState(LegState.FINISHED);
 		//leg.setTo(body.getAsset().getOverriddenProperties().getLocation());
 		leg.setArrivalTime(body.getTime());

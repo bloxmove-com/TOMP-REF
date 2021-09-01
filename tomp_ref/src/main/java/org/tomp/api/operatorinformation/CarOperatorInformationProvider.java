@@ -77,7 +77,7 @@ public class CarOperatorInformationProvider implements OperatorInformationProvid
 	@Override
 	public List<SystemPricingPlan> getPricingPlans(String acceptLanguage) {
 		SystemPricingPlan carPricingPlanKm = new SystemPricingPlan();
-		carPricingPlanKm.setPlanId("pricing_plan_km");
+		carPricingPlanKm.setPlanId("200");
 		carPricingPlanKm.setDescription("Pricing plan for kilometers");
 		carPricingPlanKm.setIsTaxable(true);
 		carPricingPlanKm.setName("Pricing Plan KM");
@@ -91,7 +91,7 @@ public class CarOperatorInformationProvider implements OperatorInformationProvid
 		carPricingPlanKm.setFare(fare);
 
 		SystemPricingPlan carPricingPlanMin = new SystemPricingPlan();
-		carPricingPlanMin.setPlanId("pricing_plan_min");
+		carPricingPlanMin.setPlanId("100");
 		carPricingPlanMin.setDescription("Pricing plan for minutes");
 		carPricingPlanMin.setIsTaxable(true);
 		carPricingPlanMin.setName("Pricing Plan Min");
