@@ -1,5 +1,5 @@
 [
-    {
+    {   "id": "dev",
         "assetClass":"CAR",
         "nrAvailable":3,
         "assets":[
@@ -55,6 +55,87 @@
             },
             {
                 "id":"TO_VIN_03",
+                "overriddenProperties":{
+                    "brand": "Audi",
+                    "model": "A6",
+                    "persons": 5,
+                    "image": "https://mediaservice.audi.com/media/live/50900/fly1400x601n8/4ah/2022.png?wid=550&output-format=webp",
+                    "fuel": "GASOLINE",
+                    "stateOfCharge": 80,
+                    "gearbox": "AUTOMATIC",
+                    "location":{
+                        "coordinates":{
+                            "lng":9.58345328,
+                            "lat":53.34108349
+                        }
+                    },
+                    "meta": {
+                        "pricingPlanId": "100",
+                        "requiredUserClaims": ["minAge18", "driverLicense"],
+                        "numberOfDoors": 5,
+                        "licensePlate": "HH-CC-2021",
+                        "mileage": 10000
+                    }
+                }
+            }
+        ]
+    },
+    {   "id": "uat",
+        "assetClass":"CAR",
+        "nrAvailable":3,
+        "assets":[
+            {
+                "id":"UAT_TO_VIN_01",
+                "overriddenProperties":{
+                    "brand": "Audi",
+                    "model": "R8",
+                    "fuel": "GASOLINE",
+                    "stateOfCharge": 100,
+                    "persons": 5,
+                    "image": "https://mediaservice.audi.com/media/live/50900/fly1400x601n8/4sp/2021.png?wid=550&output-format=webp",
+                    "gearbox": "AUTOMATIC",
+                    "location":{
+                        "coordinates":{
+                            "lng":9.993682,
+                            "lat":53.551086
+                        }
+                    },
+                    "meta": {
+                        "pricingPlanId": "100",
+                        "requiredUserClaims": ["minAge18", "driverLicense"],
+                        "numberOfDoors": 5,
+                        "licensePlate": "HH-AA-2021",
+                        "mileage": 19000
+                    }
+                }
+            },
+            {
+                "id":"UAT_TO_VIN_02",
+                "overriddenProperties":{
+                    "brand": "Audi",
+                    "model": "A5",
+                    "persons": 5,
+                    "image": "https://mediaservice.audi.com/media/live/50900/fly1400x601n8/f5p/2021.png?wid=550&output-format=webp",
+                    "fuel": "GASOLINE",
+                    "stateOfCharge": 70,
+                    "gearbox": "AUTOMATIC",
+                    "location":{
+                        "coordinates":{
+                            "lng":9.592168,
+                            "lat":53.34917
+                        }
+                    },
+                    "meta": {
+                        "pricingPlanId": "100",
+                        "requiredUserClaims": ["minAge18", "driverLicense"],
+                        "numberOfDoors": 5,
+                        "licensePlate": "HH-BB-2021",
+                        "mileage": 12000
+                    }
+                }
+            },
+            {
+                "id":"UAT_TO_VIN_03",
                 "overriddenProperties":{
                     "brand": "Audi",
                     "model": "A6",

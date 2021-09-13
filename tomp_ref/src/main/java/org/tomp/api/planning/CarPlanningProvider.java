@@ -33,11 +33,11 @@ public class CarPlanningProvider extends BasePlanningProvider {
 	protected AssetType getAssetType() {
 		AssetType assetType = new AssetType();
 		assetType.setAssetClass(AssetClass.CAR);
-		assetType.setAssetSubClass("Small car");
-		AssetProperties sharedProperties = new AssetProperties();
-		sharedProperties.setModel("Peugeot 208");
-		sharedProperties.setEnergyLabel(EnergyLabelEnum.A);
-		assetType.setSharedProperties(sharedProperties);
+		//assetType.setAssetSubClass("Small car");
+		//AssetProperties sharedProperties = new AssetProperties();
+		//sharedProperties.setModel("Peugeot 208");
+		//sharedProperties.setEnergyLabel(EnergyLabelEnum.A);
+		//assetType.setSharedProperties(sharedProperties);
 		return assetType;
 	}
 }

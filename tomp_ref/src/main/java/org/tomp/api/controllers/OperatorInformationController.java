@@ -2,6 +2,7 @@ package org.tomp.api.controllers;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -69,7 +70,16 @@ public class OperatorInformationController extends OperatorApiController {
 			@Parameter(in = ParameterIn.QUERY, description = "optional id of the station to use in the filter (/operator/stations)", schema = @Schema()) @Valid @RequestParam(value = "stationId", required = false) String stationId) {
 		HeaderValidator.validateHeader(request);
 		try {
+
 			List<AssetType> list = provider.getAvailableAssetTypes(acceptLanguage);
+
+			if (Objects.equals(maasId, "d52bfad0-ee4b-4f72-9f38-efce115ffb49")){
+				list.removeIf(p -> Objects.equals(p.getId(), "uat"));
+			}
+			if (Objects.equals(maasId, "UATbfad0-ee4b-4f72-9f38-efce115ffb49")){
+				list.removeIf(p -> Objects.equals(p.getId(), "dev"));
+			}
+
 			//HttpHeaders headers = routerUtil.createHeadersToMP("GET", "/operator/available-assets", null,
 			//		request.getHeader("MPID"));
 			return new ResponseEntity<>(list, HttpStatus.OK);
