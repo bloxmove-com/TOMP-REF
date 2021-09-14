@@ -4,7 +4,7 @@
         "nrAvailable":3,
         "assets":[
             {
-                "id":"TO_VIN_01",
+                "id":"DEV_TO_VIN_01",
                 "overriddenProperties":{
                     "brand": "Audi",
                     "model": "R8",
@@ -29,7 +29,7 @@
                 }
             },
             {
-                "id":"TO_VIN_02",
+                "id":"DEV_TO_VIN_02",
                 "overriddenProperties":{
                     "brand": "Audi",
                     "model": "A5",
@@ -54,7 +54,7 @@
                 }
             },
             {
-                "id":"TO_VIN_03",
+                "id":"DEV_TO_VIN_03",
                 "overriddenProperties":{
                     "brand": "Audi",
                     "model": "A6",

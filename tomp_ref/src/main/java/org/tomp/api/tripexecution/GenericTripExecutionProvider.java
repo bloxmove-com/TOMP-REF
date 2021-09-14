@@ -105,6 +105,15 @@ public class GenericTripExecutionProvider implements TripExecutionProvider {
 		Leg leg = repository.getLeg(id);
 
 		leg.setState(LegState.FINISHED);
+
+		Place p = new Place();
+
+		Coordinates c = new Coordinates();
+		c.setLng(new BigDecimal("6.883315"));
+		c.setLat(new BigDecimal("52.857297"));
+		p.setCoordinates(c);
+
+		leg.setTo(p);
 		//leg.setTo(body.getAsset().getOverriddenProperties().getLocation());
 		leg.setArrivalTime(body.getTime());
 		leg.setPricing(leg.getPricing());
