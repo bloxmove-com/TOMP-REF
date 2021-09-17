@@ -6,7 +6,7 @@
             {
                 "id":"DEV_TO_VIN_01",
                 "overriddenProperties":{
-                    "brand": "Audi",
+                    "brand": "Audi-dev",
                     "model": "R8",
                     "fuel": "GASOLINE",
                     "stateOfCharge": 100,
@@ -31,7 +31,7 @@
             {
                 "id":"DEV_TO_VIN_02",
                 "overriddenProperties":{
-                    "brand": "Audi",
+                    "brand": "Audi-dev",
                     "model": "A5",
                     "persons": 5,
                     "image": "https://mediaservice.audi.com/media/live/50900/fly1400x601n8/f5p/2021.png?wid=550&output-format=webp",
@@ -56,7 +56,7 @@
             {
                 "id":"DEV_TO_VIN_03",
                 "overriddenProperties":{
-                    "brand": "Audi",
+                    "brand": "Audi-dev",
                     "model": "A6",
                     "persons": 5,
                     "image": "https://mediaservice.audi.com/media/live/50900/fly1400x601n8/4ah/2022.png?wid=550&output-format=webp",
@@ -87,7 +87,7 @@
             {
                 "id":"UAT_TO_VIN_01",
                 "overriddenProperties":{
-                    "brand": "Audi",
+                    "brand": "Audi-uat",
                     "model": "R8",
                     "fuel": "GASOLINE",
                     "stateOfCharge": 100,
@@ -112,7 +112,7 @@
             {
                 "id":"UAT_TO_VIN_02",
                 "overriddenProperties":{
-                    "brand": "Audi",
+                    "brand": "Audi-uat",
                     "model": "A5",
                     "persons": 5,
                     "image": "https://mediaservice.audi.com/media/live/50900/fly1400x601n8/f5p/2021.png?wid=550&output-format=webp",
@@ -137,7 +137,7 @@
             {
                 "id":"UAT_TO_VIN_03",
                 "overriddenProperties":{
-                    "brand": "Audi",
+                    "brand": "Audi-uat",
                     "model": "A6",
                     "persons": 5,
                     "image": "https://mediaservice.audi.com/media/live/50900/fly1400x601n8/4ah/2022.png?wid=550&output-format=webp",
